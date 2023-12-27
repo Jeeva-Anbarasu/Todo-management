@@ -40,4 +40,25 @@ public class TodoController {
         TodoDto updatedTodo = todoService.updateTodo(todoDto, id);
         return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteTodo/{id}")
+    public ResponseEntity<String> deleteTodo(@PathVariable Long id){
+        todoService.deleteTodo(id);
+        return new ResponseEntity<>("Deleted Successfully" , HttpStatus.OK);
+    }
+
+    //Build complete to do REST API
+    @PatchMapping("/complete/{id}")
+    public ResponseEntity<TodoDto> completeTodo(@PathVariable Long id){
+        TodoDto updatedTodo = todoService.completeTodo(id);
+        return new ResponseEntity<>(updatedTodo , HttpStatus.OK);
+    }
+
+    @PatchMapping("/incomplete/{id}")
+    public ResponseEntity<TodoDto> incompleteTodo(@PathVariable Long id){
+        TodoDto updatedTodo = todoService.incompleteTodo(id);
+        return new ResponseEntity<>(updatedTodo , HttpStatus.OK);
+    }
+
+
 }
